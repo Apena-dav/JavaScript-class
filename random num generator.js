@@ -1,41 +1,46 @@
-function generatePassword(length, includeuppercase, includelowercase, includeNumbers, inccludeSymbols){
-    return ``
+function generatePassword(length, includeUppercase, includeLowercase, includeNumbers, includeSymbols){
 
     const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
     const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const numberChars = "0123456789"
-    const symbolChars = "!£$%^&*()_+:@';~#`"
+    const numberChars = "0123456789";
+    const symbolChars = "!£$%^&*()_+:@';~#`";
 
-    let allowedChars = ``
-    let password = ``
+    let allowedChars = "";
+    let password = "";
 
-    allowedChars += includeuppercase ? uppercaseChars : `` 
-    allowedChars += includelowercase ? lowercaseChars : `` 
-    allowedChars += includeNumbers ? numberChars : `` 
-    allowedChars += inccludeSymbols ? symbolChars : `` 
+    allowedChars += includeUppercase ? uppercaseChars : "";
+    allowedChars += includeLowercase ? lowercaseChars : "";
+    allowedChars += includeNumbers ? numberChars : "";
+    allowedChars += includeSymbols ? symbolChars : "";
 
-    if(password <= 0){
-        return `(password length must be at least one)`
+    if(length <= 0){
+        return "(Password length must be at least 1)";
     }
+
     if(allowedChars.length === 0){
-        return `(At least 1 set of character needs to be selected)`
+        return "(At least one character set must be selected)";
     }
 
-    ///not yet completed
-    return ``
+    for(let i = 0; i < length; i++){
+        const randomIndex = Math.floor(Math.random() * allowedChars.length);
+        password += allowedChars[randomIndex];
+    }
 
+    return password;
 }
 
 const passwordLength = 12;
 const includeUppercase = true;
-const includelowercase = true;
+const includeLowercase = true;
 const includeNumbers = true;
-const inccludeSymbols = true;
+const includeSymbols = true;
 
-const password = generatePassword(passwordLength, 
-                                includeUppercase, 
-                                includelowercase, 
-                                includeNumbers, 
-                                inccludeSymbols)
+const password = generatePassword(
+    passwordLength,
+    includeUppercase,
+    includeLowercase,
+    includeNumbers,
+    includeSymbols
+);
 
-console.log(`Password: ${password}`)
+console.log(`Password: ${password}`);
